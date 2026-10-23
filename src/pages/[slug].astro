@@ -1,0 +1,137 @@
+---
+import BackLink from '../components/BackLink.astro';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Media from '../components/Media.astro';
+import Cta from '../components/Cta.astro';
+import { company, services, type Service } from '../data/site';
+import { href, asset } from '../lib';
+
+export function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { s } }));
+}
+const { s } = Astro.props as { s: Service };
+const idx = services.findIndex((x) => x.slug === s.slug);
+const next = services[(idx + 1) % services.length];
+const parent = s.parent ? services.find((p) => p.slug === s.parent) : undefined;
+const related = services.filter((x) => x.slug !== s.slug && (x.parent === s.slug || x.slug === s.parent || x.group === s.group));
+const gallery = s.gallery ?? [];
+const SHOW = 9;
+---
+<Base title={s.title} current="diensten" description={`${s.title} door Star Solutions (Gent). ${s.short}`}>
+  <section class="page-hero">
+    <div class="wrap">
+      <BackLink to={parent ? parent.slug : 'diensten'} label={parent ? `Terug naar ${parent.title}` : 'Terug naar diensten'} />
+      <div class="crumbs">
+        <a href={href('')}>Home</a><span>/</span><a href={href('diensten')}>Diensten</a><span>/</span>
+        {parent && <><a href={href(parent.slug)}>{parent.title}</a><span>/</span></>}
+        <span>{s.title}</span>
+      </div>
+      <span class="eyebrow" style="margin-bottom:18px">{s.group}</span>
+      <h1>{s.title}</h1>
+      <p class="lead">{s.short}</p>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:clamp(64px,9vw,128px)">
+    <div class="detail">
+      <div class="detail-main">
+        {s.image && <Media class="detail-hero-media reveal-img" img={s.image} sizes="(min-width: 1000px) 60vw, 100vw" alt={s.title} icon={s.group} eager />}
+        <div class="prose reveal">{s.intro.map((p) => <p>{p}</p>)}</div>
+        {s.highlights && <div class="highlights reveal">{s.highlights.map((h) => <span>{h}</span>)}</div>}
+        {s.lists.map((l) => (
+          <div class="list-block reveal">
+            <h3>{l.title ?? 'Wat we doen'}</h3>
+            <ul class="checklist">{l.items.map((it) => <li>{it}</li>)}</ul>
+          </div>
+        ))}
+        {s.video && (
+          <div class="list-block reveal">
+            <h3>In beeld</h3>
+            <video class="svc-video" src={asset(s.video.src)} poster={asset(s.video.poster)} controls muted playsinline preload="none"></video>
+          </div>
+        )}
+        {gallery.length > 0 && (
+          <div class="list-block">
+            <h3 class="reveal">Uit ons werk <small>{gallery.length + 1} foto's</small></h3>
+            <div class="gallery" data-gallery>
+              {[s.image!, ...gallery].map((g, i) => (
+                <button type="button" class:list={['gallery-item', i > 0 && 'reveal', i === 0 && 'sr-hidden', i > SHOW && 'extra']} data-full={asset(g.src)} aria-label={`Foto ${i + 1} vergroten`}>
+                  {i > 0 && <Media img={g} sizes="(min-width: 800px) 22vw, 50vw" alt={`${s.title}, foto ${i + 1}`} icon={s.group} />}
+                </button>
+              ))}
+            </div>
+            {gallery.length > SHOW && <button type="button" class="btn ghost gallery-more" data-more>Toon alle {gallery.length + 1} foto's</button>}
+          </div>
+        )}
+        <a class="next-svc" href={href(next.slug)}>
+          <div><span>Volgende dienst</span><b>{next.title}</b></div>
+          <span class="go"><Icon name="arrow" /></span>
+        </a>
+      </div>
+      <aside class="aside">
+        <div class="aside-card">
+          <h3>Interesse in {s.title.toLowerCase()}?</h3>
+          <p>Vraag een vrijblijvende offerte. We zijn 7 op 7 bereikbaar.</p>
+          <dl>
+            <div><dt>Telefoon</dt><dd><a href={company.phoneHref}>{company.phone}</a></dd></div>
+            <div><dt>E-mail</dt><dd><a href={`mailto:${company.email}`}>{company.email}</a></dd></div>
+            <div><dt>Adres</dt><dd>{company.street}, {company.city}</dd></div>
+          </dl>
+          <a class="btn accent" href={href('contact')}>Offerte aanvragen <Icon name="arrow" class="arr" /></a>
+        </div>
+        {related.length > 0 && (
+          <div class="aside-links">
+            <h4>Verwante diensten</h4>
+            {related.slice(0, 5).map((r) => <a href={href(r.slug)}>{r.title}<span>→</span></a>)}
+          </div>
+        )}
+      </aside>
+    </div>
+  </section>
+  <Cta />
+  <dialog class="lightbox" id="lightbox" aria-label="Foto">
+    <img alt="" />
+    <span class="lb-count"></span>
+    <button type="button" class="lb-btn lb-close" data-lb="close" aria-label="Sluiten">×</button>
+    <button type="button" class="lb-btn lb-prev" data-lb="-1" aria-label="Vorige foto">‹</button>
+    <button type="button" class="lb-btn lb-next" data-lb="1" aria-label="Volgende foto">›</button>
+  </dialog>
+  <script is:inline>
+    (function () {
+      var items = Array.prototype.slice.call(document.querySelectorAll('.gallery-item'));
+      var dlg = document.getElementById('lightbox');
+      if (!items.length || !dlg || !dlg.showModal) return;
+      var img = dlg.querySelector('img'), count = dlg.querySelector('.lb-count'), cur = 0;
+      function show(i) {
+        cur = (i + items.length) % items.length;
+        img.src = items[cur].dataset.full;
+        count.textContent = (cur + 1) + ' / ' + items.length;
+      }
+      items.forEach(function (b, i) { b.addEventListener('click', function () { show(i); dlg.showModal(); }); });
+      var hero = document.querySelector('.detail-hero-media');
+      if (hero) { hero.style.cursor = 'zoom-in'; hero.addEventListener('click', function () { show(0); dlg.showModal(); }); }
+      dlg.addEventListener('click', function (e) {
+        var a = e.target.getAttribute('data-lb');
+        if (a === 'close' || e.target === dlg) dlg.close();
+        else if (a) show(cur + Number(a));
+      });
+      dlg.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') show(cur + 1);
+        if (e.key === 'ArrowLeft') show(cur - 1);
+      });
+      var x0 = null;
+      dlg.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+      dlg.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 40) show(cur + (dx < 0 ? 1 : -1));
+      });
+      var more = document.querySelector('[data-more]');
+      if (more) more.addEventListener('click', function () {
+        document.querySelectorAll('.gallery-item.extra').forEach(function (el) { el.classList.remove('extra'); el.classList.add('in'); });
+        more.remove();
+      });
+    })();
+  </script>
+</Base>

@@ -1,0 +1,21 @@
+---
+import BackLink from '../components/BackLink.astro';
+import Base from '../layouts/Base.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Cta from '../components/Cta.astro';
+import { href } from '../lib';
+---
+<Base title="Diensten" current="diensten">
+  <section class="page-hero">
+    <div class="wrap">
+      <BackLink to="" label="Terug naar home" />
+      <div class="crumbs"><a href={href('')}>Home</a><span>/</span><span>Diensten</span></div>
+      <h1>Diensten</h1>
+      <p class="lead">Renovatie en klusjesdienst, industriële reiniging, groenonderhoud, algemene schoonmaak, bekleding- en zetelreiniging, car detailing, logistiek en inpak, sanering en afvalbeheer, en desinfectie van gebouwen, kantoren en publieke ruimten.</p>
+    </div>
+  </section>
+  <section class="wrap" style="padding-bottom:clamp(64px,9vw,128px)">
+    <ServiceGrid />
+  </section>
+  <Cta />
+</Base>

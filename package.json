@@ -1,0 +1,21 @@
+{
+  "name": "starsolutions-site",
+  "version": "1.0.0",
+  "description": "Website van Star Solutions (Gent), gebouwd met Astro.",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:preview": "node scripts/build-preview.mjs",
+    "preview": "astro preview"
+  },
+  "author": "Star Solutions",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "astro": "^5.18.2"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=18.20.8"
+  }
+}

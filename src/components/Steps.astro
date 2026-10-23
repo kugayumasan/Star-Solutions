@@ -1,0 +1,12 @@
+---
+import { steps } from '../data/site';
+---
+<div class="steps">
+  {steps.map((s, i) => (
+    <div class="step">
+      <span class="n">{String(i + 1).padStart(2, '0')}</span>
+      <h3>{s.title}</h3>
+      <p>{s.text}</p>
+    </div>
+  ))}
+</div>

@@ -1,0 +1,8 @@
+---
+// Terug-knop bovenaan diepere pagina's.
+import Icon from './Icon.astro';
+import { href } from '../lib';
+interface Props { to: string; label: string; }
+const { to, label } = Astro.props;
+---
+<a class="back-link" href={href(to)}><span class="back-ico"><Icon name="arrow" /></span>{label}</a>

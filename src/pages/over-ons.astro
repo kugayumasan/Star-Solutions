@@ -1,0 +1,67 @@
+---
+import BackLink from '../components/BackLink.astro';
+import Base from '../layouts/Base.astro';
+import Media from '../components/Media.astro';
+import Star from '../components/Star.astro';
+import Cta from '../components/Cta.astro';
+import { goals, values, company } from '../data/site';
+import { href } from '../lib';
+import { pageMedia } from '../data/media';
+---
+<Base title="Over ons" current="over-ons" description="Star Solutions is een servicebedrijf uit Gent met een totaalpakket aan diensten voor een aangename, veilige en efficiënte werkomgeving.">
+  <section class="page-hero">
+    <div class="wrap">
+      <BackLink to="" label="Terug naar home" />
+      <div class="crumbs"><a href={href('')}>Home</a><span>/</span><span>Over ons</span></div>
+      <h1>Over Star Solutions</h1>
+      <p class="lead">Wij zijn een servicebedrijf met een totaalpakket aan diensten, gericht op een aangename, veilige en efficiënte werkomgeving, op een milieuvriendelijke manier.</p>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:clamp(64px,9vw,128px)">
+    <div class="about-grid">
+      <Media class="detail-hero-media contain reveal-img" img={pageMedia['over-ons']} alt="Strategiekaart van Star Solutions" icon="star" />
+      <div style="display:grid;gap:22px;align-content:center">
+        <span class="eyebrow">Onze missie</span>
+        <p class="mission reveal">Een <mark>aangename, veilige en efficiënte</mark> werkomgeving creëren, op een milieuvriendelijke manier.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-bottom:clamp(64px,9vw,128px)">
+    <div class="about-grid">
+      <div style="display:grid;gap:18px;align-content:start">
+        <span class="eyebrow">Wat we doen</span>
+        <h2 class="reveal" style="font-size:var(--step-3)">Eén partner, van schoonmaak tot sloop</h2>
+      </div>
+      <div class="prose reveal">
+        <p>Industriële en algemene schoonmaak, groenonderhoud, desinfectie, bouw en renovatie (inclusief afbraak) en klusjesdiensten.</p>
+        <p>Bedrijven met een personeelstekort kunnen op ons rekenen als partner in werkkrachten. Voor productieactiviteiten in sectoren als logistiek, inpak en voeding werken we oplossingen op maat uit.</p>
+        <p>Het bedrijf wordt geleid door een jonge, gedreven zaakvoerder met achtergrond in kmo-management. Ons team is ervaren, goed georganiseerd en oplossingsgericht.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section deep">
+    <Star class="big-star" />
+    <div class="wrap about-grid">
+      <div style="display:grid;gap:18px;align-content:start">
+        <span class="eyebrow">Bedrijfsdoelstellingen</span>
+        <h2 class="reveal" style="font-size:var(--step-3)">Waar we elke dag naartoe werken</h2>
+      </div>
+      <ol class="goal-list reveal">{goals.map((g) => <li>{g}</li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head"><span class="eyebrow">Waarden</span><h2 class="reveal">Smart, safe, sustainable & support</h2></div>
+      <div class="values">
+        {values.map((v, i) => (
+          <div class="value reveal" style={`--d:${i * 0.08}s`}><span class="k">0{i + 1}</span><h3>{v.title}</h3><p>{v.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <Cta />
+</Base>

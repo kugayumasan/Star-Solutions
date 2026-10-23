@@ -1,0 +1,21 @@
+---
+import BackLink from '../components/BackLink.astro';
+import Base from '../layouts/Base.astro';
+import Steps from '../components/Steps.astro';
+import Cta from '../components/Cta.astro';
+import { href } from '../lib';
+---
+<Base title="Aanpak" current="aanpak" description="De aanpak van Star Solutions: heldere stappen, professionele uitvoering. Van kennismaking tot oplevering en opvolging.">
+  <section class="page-hero">
+    <div class="wrap">
+      <BackLink to="" label="Terug naar home" />
+      <div class="crumbs"><a href={href('')}>Home</a><span>/</span><span>Aanpak</span></div>
+      <h1>Heldere stappen, professionele uitvoering</h1>
+      <p class="lead">Elk project volgt vijf vaste fases. Zo weet u vooraf wat er gebeurt, wat het kost en wanneer het klaar is.</p>
+    </div>
+  </section>
+  <section class="wrap" style="padding-bottom:clamp(64px,9vw,128px)">
+    <Steps />
+  </section>
+  <Cta />
+</Base>

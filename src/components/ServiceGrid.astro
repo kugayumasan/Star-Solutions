@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+import { services } from '../data/site';
+import { href } from '../lib';
+---
+<div class="svc-grid">
+  {services.map((s, i) => {
+    const parent = s.parent && services.find((p) => p.slug === s.parent);
+    return (
+      <a class="svc reveal" style={`--d:${(i % 3) * 0.08}s`} href={href(s.slug)}>
+        <div class="top">
+          <span class="ico"><Icon name={s.group} /></span>
+          <span class="tag">{s.group}</span>
+        </div>
+        <h3>{s.title}</h3>
+        <p>{s.short}</p>
+        {parent && <span class="sub">Onderdeel van {parent.title}</span>}
+        <span class="more">Bekijk dienst <Icon name="arrow" /></span>
+      </a>
+    );
+  })}
+</div>

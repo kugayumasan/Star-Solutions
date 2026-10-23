@@ -1,0 +1,74 @@
+---
+import BackLink from '../components/BackLink.astro';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { company, services } from '../data/site';
+import { href } from '../lib';
+---
+<Base title="Contact 7 op 7" current="contact" description="Contacteer Star Solutions in Gent, 7 op 7: 0473 48 48 94 of info@starsolutions-service.be.">
+  <section class="page-hero">
+    <div class="wrap">
+      <BackLink to="" label="Terug naar home" />
+      <div class="crumbs"><a href={href('')}>Home</a><span>/</span><span>Contact</span></div>
+      <h1>Contact, 7 op 7</h1>
+      <p class="lead">Heeft u vragen over onze diensten? Vul het formulier in of bel ons rechtstreeks. We antwoorden u zo snel mogelijk.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="contact-grid">
+      <div class="contact-cards">
+        <a class="c-card reveal" href={company.phoneHref}><span class="ico"><Icon name="phone" /></span><span><small>Gsm</small><b>{company.phone}</b></span></a>
+        <a class="c-card reveal" style="--d:.06s" href={`mailto:${company.email}`}><span class="ico"><Icon name="mail" /></span><span><small>E-mail</small><b>{company.email}</b></span></a>
+        <a class="c-card reveal" style="--d:.12s" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(company.street + ', ' + company.city)}`} target="_blank" rel="noopener"><span class="ico"><Icon name="pin" /></span><span><small>Adres</small><b>{company.street}, {company.city}</b></span></a>
+        <div class="c-card reveal" style="--d:.18s"><span class="ico"><Icon name="doc" /></span><span><small>Ondernemingsnummer</small><b style="font-family:var(--f-mono);font-weight:500">{company.vat}</b></span></div>
+        <div class="c-card reveal" style="--d:.24s"><span class="ico"><Icon name="clock" /></span><span><small>Bereikbaarheid</small><b>{company.availability}</b></span></div>
+      </div>
+
+      <form class="form reveal" id="contact-form" novalidate>
+        <h2>Vraag een offerte aan</h2>
+        <div class="row">
+          <div class="field"><label for="f-name">Naam</label><input id="f-name" name="naam" autocomplete="name" required /></div>
+          <div class="field"><label for="f-phone">Telefoon</label><input id="f-phone" name="telefoon" type="tel" autocomplete="tel" /></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="f-email">E-mail</label><input id="f-email" name="email" type="email" autocomplete="email" required /></div>
+          <div class="field"><label for="f-service">Dienst</label>
+            <select id="f-service" name="dienst">
+              <option value="">Kies een dienst</option>
+              {services.map((s) => <option>{s.title}</option>)}
+              <option>Personeel / werkkrachten</option>
+              <option>Iets anders</option>
+            </select>
+          </div>
+        </div>
+        <div class="field"><label for="f-msg">Bericht</label><textarea id="f-msg" name="bericht" required placeholder="Beschrijf kort uw project of vraag"></textarea></div>
+        <div class="btn-row"><button class="btn accent" type="submit" style="cursor:pointer;font:inherit;font-weight:700">Verstuur aanvraag <Icon name="arrow" class="arr" /></button></div>
+        <p class="note" id="form-note">Uw bericht gaat naar {company.email}.</p>
+        <div class="form-status" id="form-status" hidden></div>
+      </form>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ email: company.email }}>
+    var form = document.getElementById('contact-form');
+    var status = document.getElementById('form-status');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = new FormData(form);
+      var missing = ['naam', 'email', 'bericht'].filter(function (k) { return !String(d.get(k) || '').trim(); });
+      if (missing.length) {
+        status.hidden = false;
+        status.style.background = 'color-mix(in oklab, #ef4444 16%, var(--surface))';
+        status.textContent = 'Vul uw naam, e-mail en bericht in.';
+        return;
+      }
+      var body = 'Naam: ' + d.get('naam') + '\nTelefoon: ' + (d.get('telefoon') || '-') + '\nE-mail: ' + d.get('email') + '\nDienst: ' + (d.get('dienst') || '-') + '\n\n' + d.get('bericht');
+      var subject = 'Offerteaanvraag' + (d.get('dienst') ? ' – ' + d.get('dienst') : '');
+      status.hidden = false;
+      status.style.background = '';
+      status.textContent = 'Uw e-mailprogramma opent met het bericht klaar. Verstuur het daar, of mail rechtstreeks naar ' + email + '.';
+      window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
+  </script>
+</Base>

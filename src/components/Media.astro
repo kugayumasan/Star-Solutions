@@ -1,0 +1,14 @@
+---
+// Foto met een gestileerde terugval als de afbeelding niet laadt.
+import Icon from './Icon.astro';
+import type { Img } from '../data/media';
+import { asset } from '../lib';
+interface Props { img?: Img; src?: string; alt?: string; icon?: string; class?: string; eager?: boolean; sizes?: string; }
+const { img, src, alt = '', icon = 'star', class: cls = '', eager = false, sizes = '(min-width: 1000px) 50vw, 100vw' } = Astro.props;
+const url = img ? asset(img.src) : src && asset(src);
+const srcset = img ? `${asset(img.sm)} 720w, ${asset(img.src)} ${img.w}w` : undefined;
+---
+<div class:list={['media', cls]}>
+  {url && <img src={url} srcset={srcset} sizes={srcset ? sizes : undefined} width={img?.w} height={img?.h} alt={alt} loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : undefined} decoding="async" onerror="this.classList.add('broken')" />}
+  <div class="fallback-icon"><Icon name={icon} /></div>
+</div>

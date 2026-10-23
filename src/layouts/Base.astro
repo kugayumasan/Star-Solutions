@@ -1,0 +1,182 @@
+---
+import '../styles/global.css';
+import Icon from '../components/Icon.astro';
+import Star from '../components/Star.astro';
+import { company, nav, services } from '../data/site';
+import { href, asset } from '../lib';
+
+interface Props { title: string; description?: string; current?: string; }
+const { title, description = `${company.name} uit Gent: bouw & renovatie, schoonmaak, industriële reiniging, groenonderhoud, logistiek en desinfectie. ${company.availability}.`, current = '' } = Astro.props;
+const fullTitle = current === '' ? `${company.name} | ${company.tagline}` : `${title} | ${company.name}`;
+const mainServices = services.filter((s) => !s.parent);
+---
+<html lang="nl-BE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="claude:viewport-fit-sides" content="cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`https://starsolutions-service.be/${company.heroImage.src}`} />
+    <meta name="theme-color" content="#0c1724" />
+    <link rel="icon" href={asset(company.favicon)} sizes="32x32" />
+    <link rel="apple-touch-icon" href={asset(company.logo)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <div class="wrap bar">
+        <a class="brand" href={href('')} aria-label="Star Solutions, naar home">
+          <span class="mark"><Star /></span>
+          <span>STAR Solutions<small>Service · Gent</small></span>
+        </a>
+        <nav class="nav" aria-label="Hoofdmenu">
+          {nav.map((n) => <a href={href(n.href)} aria-current={n.href === current ? 'page' : undefined}>{n.label}</a>)}
+        </nav>
+        <div class="header-cta">
+          <a class="btn accent" href={href('contact')}>Vraag een offerte <Icon name="arrow" class="arr" /></a>
+        </div>
+        <button class="menu-toggle" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle"><span></span></button>
+      </div>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <nav aria-label="Mobiel menu">
+        {nav.map((n, i) => <a href={href(n.href)}>{n.label}<small>0{i + 1}</small></a>)}
+      </nav>
+      <div class="mm-contact">
+        <span>{company.availability}</span>
+        <a href={company.phoneHref}>{company.phone}</a>
+        <a href={`mailto:${company.email}`}>{company.email}</a>
+      </div>
+      <a class="btn accent" href={href('contact')}>Vraag een offerte <Icon name="arrow" /></a>
+    </div>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div>
+            <a class="brand" href={href('')}><span class="mark"><Star /></span><span>STAR Solutions<small>Service · Gent</small></span></a>
+            <p>{company.subline}</p>
+          </div>
+          <div>
+            <h4>Diensten</h4>
+            <ul>{mainServices.map((s) => <li><a href={href(s.slug)}>{s.title}</a></li>)}</ul>
+          </div>
+          <div>
+            <h4>Ook</h4>
+            <ul>
+              {services.filter((s) => s.parent).map((s) => <li><a href={href(s.slug)}>{s.title}</a></li>)}
+              <li><a href={href('aanpak')}>Aanpak</a></li>
+              <li><a href={href('over-ons')}>Over ons</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Contact · 7 op 7</h4>
+            <ul>
+              <li>{company.street}<br />{company.city}</li>
+              <li><a href={company.phoneHref}>{company.phone}</a></li>
+              <li><a href={`mailto:${company.email}`}>{company.email}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-big" aria-hidden="true">STAR SOLUTIONS</div>
+        <div class="footer-bottom">
+          <span>© {new Date().getFullYear()} Star Solutions</span>
+          <span class="mono">BTW {company.vat}</span>
+          <button class="to-top" type="button" id="to-top">Naar boven ↑</button>
+        </div>
+      </div>
+    </footer>
+
+    <a class="call-fab" href={company.phoneHref} aria-label={`Bel ons: ${company.phone}`} id="call-fab"><Icon name="phone" /></a>
+
+    <script is:inline>
+      (function () {
+        var root = document.documentElement, body = document.body;
+
+        // Elke nieuwe pagina start bovenaan (behalve bij een #anker)
+        function toTop() {
+          root.style.scrollBehavior = 'auto';
+          window.scrollTo(0, 0);
+          try { if (window.top !== window) root.scrollIntoView({ block: 'start' }); } catch (e) {}
+          root.style.scrollBehavior = '';
+        }
+        if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+        if (!location.hash) {
+          toTop();
+          requestAnimationFrame(toTop);
+          window.addEventListener('load', toTop);
+          window.addEventListener('pageshow', function (e) { if (e.persisted) toTop(); });
+        }
+        // Interne links (knoppen, footer, menu): eerst naar boven, dan pas naar de nieuwe pagina.
+        // Een link naar de huidige pagina scrolt gewoon rustig naar boven.
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a[href]');
+          if (!a || a.target === '_blank' || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+          var url = new URL(a.href, location.href);
+          if (url.origin !== location.origin || url.hash || !/^https?:/.test(url.protocol)) return;
+          var here = location.pathname.replace(/(index\.html|\/)$/, ''), there = url.pathname.replace(/(index\.html|\/)$/, '');
+          if (here === there) { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+          toTop();
+        });
+        var header = document.querySelector('.site-header');
+        var fab = document.getElementById('call-fab');
+        var toggle = document.getElementById('menu-toggle');
+        var menu = document.getElementById('mobile-menu');
+
+        // Header: achtergrond na scrollen, verbergen bij naar beneden scrollen
+        var lastY = 0;
+        function onScroll() {
+          var y = window.scrollY;
+          header.classList.toggle('scrolled', y > 10);
+          header.classList.toggle('hide', y > 400 && y > lastY && !body.classList.contains('menu-open'));
+          fab && fab.classList.toggle('show', y > 500);
+          lastY = y;
+          var p = document.querySelector('.steps-progress i');
+          if (p) {
+            var s = p.parentElement.parentElement.getBoundingClientRect();
+            var pct = Math.min(1, Math.max(0, (window.innerHeight * 0.6 - s.top) / s.height));
+            p.style.height = (pct * 100) + '%';
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        // Mobiel menu
+        function setMenu(open) {
+          body.classList.toggle('menu-open', open);
+          toggle.setAttribute('aria-expanded', open);
+          toggle.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+          menu.setAttribute('aria-hidden', !open);
+        }
+        toggle.addEventListener('click', function () { setMenu(!body.classList.contains('menu-open')); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+        menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+
+        document.getElementById('to-top').addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        // Scroll-reveal; alles wat al in beeld is, verschijnt meteen
+        var els = document.querySelectorAll('.reveal, .reveal-img, .step');
+        if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        els.forEach(function (el) { io.observe(el); });
+        // Vangnet: na 2,5 s alles tonen dat nog verborgen is (bv. bij screenshots)
+        setTimeout(function () { document.querySelectorAll('.reveal:not(.in), .reveal-img:not(.in)').forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('in');
+        }); }, 2500);
+      })();
+    </script>
+  </body>
+</html>

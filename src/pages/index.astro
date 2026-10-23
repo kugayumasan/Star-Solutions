@@ -1,0 +1,143 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import Media from '../components/Media.astro';
+import Star from '../components/Star.astro';
+import ServiceGrid from '../components/ServiceGrid.astro';
+import Steps from '../components/Steps.astro';
+import Cta from '../components/Cta.astro';
+import { company, sectors, services, values } from '../data/site';
+import { href } from '../lib';
+
+const marquee = services.map((s) => s.title);
+const sectorIcons = ['Bouw', 'Industrie', 'Buiten'];
+---
+<Base title="Home">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Bouw · Schoonmaak · Industrie · Groen</span>
+        <h1>
+          <span class="line"><span>Wij zorgen</span></span>
+          <span class="line"><span>voor een <em>efficiënte</em></span></span>
+          <span class="line"><span><span class="hl">werkplaats</span></span></span>
+        </h1>
+        <p class="lead">{company.subline} Star Solutions uit Gent ontzorgt particulieren, bedrijven en overheden met één aanspreekpunt voor al uw werken.</p>
+        <div class="btn-row">
+          <a class="btn" href={href('diensten')}>Onze diensten <Icon name="arrow" class="arr" /></a>
+          <a class="btn ghost" href={href('contact')}>Gratis offerte</a>
+        </div>
+        <div class="hero-facts">
+          <div><b>{services.length}</b><span>diensten onder één dak</span></div>
+          <div><b>7/7</b><span>bereikbaar</span></div>
+          <div><b>80 km</b><span>werkgebied rond Gent</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <Media img={company.heroImage} sizes="(min-width: 1000px) 55vw, 100vw" alt="Team van Star Solutions aan het werk" icon="star" eager />
+        <svg class="hero-star" viewBox="0 0 100 100" aria-hidden="true">
+          <defs><path id="circ" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0" /></defs>
+          <text><textPath href="#circ">STAR SOLUTIONS · GENT · 7 OP 7 · </textPath></text>
+          <path d="M50 34 L54 45 L66 45 L56.5 52 L60 63 L50 56.5 L40 63 L43.5 52 L34 45 L46 45 Z" fill="#ffb800" />
+        </svg>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          <p><b>Nu bereikbaar</b>Bel {company.phone} voor een vrijblijvend gesprek.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      {[...marquee, ...marquee].map((m) => <span>{m}</span>)}
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head split">
+        <div style="display:grid;gap:18px">
+          <span class="eyebrow">Drie werkterreinen</span>
+          <h2 class="reveal">Van uw huis tot de industrie, van uw tuin tot de toekomst</h2>
+        </div>
+        <p class="lead reveal" style="--d:.1s">Wij bieden diensten aan op drie gebieden. Eén partner die renoveert, reinigt en onderhoudt, binnen en buiten.</p>
+      </div>
+      <div class="sectors">
+        {sectors.map((s, i) => (
+          <a class="sector reveal" style={`--d:${i * 0.1}s`} href={href(s.href)}>
+            <Media img={s.image} sizes="(min-width: 800px) 33vw, 100vw" alt={s.title} icon={sectorIcons[i]} />
+            <span class="num">0{i + 1} / 03</span>
+            <span class="go"><Icon name="arrow" /></span>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head split">
+        <div style="display:grid;gap:18px">
+          <span class="eyebrow">Onze diensten</span>
+          <h2 class="reveal">Alles voor een propere, veilige werkplek</h2>
+        </div>
+        <p class="lead reveal" style="--d:.1s">Algemene en industriële schoonmaak, groenonderhoud, desinfectie, bouw en klusjesdiensten. Kies een dienst voor alle details.</p>
+      </div>
+      <ServiceGrid />
+    </div>
+  </section>
+
+  <section class="section deep">
+    <Star class="big-star" />
+    <div class="wrap partner">
+      <div style="display:grid;gap:22px">
+        <span class="eyebrow">Partner in werkkrachten</span>
+        <h2 class="reveal">Personeelstekort? Wij springen bij.</h2>
+        <p class="lead reveal" style="--d:.1s">Bedrijven met een tekort aan personeel kunnen op ons rekenen als partner in werkkrachten. We bieden oplossingen op maat voor uw productieactiviteiten.</p>
+        <div class="btn-row reveal" style="--d:.2s"><a class="btn accent" href={href('logistiek-inpak')}>Logistiek & inpak <Icon name="arrow" class="arr" /></a></div>
+      </div>
+      <div class="chips reveal" style="--d:.15s">
+        {['Productie', 'Logistiek', 'Onderhoud', 'Inpak', 'Vleessector', 'Voedingssector', 'Orderpicken', 'Laden & lossen', 'Kwaliteitscontrole'].map((c) => <span class="chip">{c}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head split">
+        <div style="display:grid;gap:18px">
+          <span class="eyebrow">Aanpak</span>
+          <h2 class="reveal">Heldere stappen, professionele uitvoering</h2>
+        </div>
+        <div class="reveal" style="--d:.1s;display:grid;gap:20px;justify-items:start">
+          <p class="lead">Zo verloopt elk project, van het eerste gesprek tot de opvolging na oplevering.</p>
+          <a class="btn ghost" href={href('aanpak')}>Meer over onze aanpak <Icon name="arrow" class="arr" /></a>
+        </div>
+      </div>
+      <Steps />
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Waar we voor staan</span>
+        <h2 class="reveal">Smart, safe, sustainable & support</h2>
+      </div>
+      <div class="values">
+        {values.map((v, i) => (
+          <div class="value reveal" style={`--d:${i * 0.08}s`}>
+            <span class="k">0{i + 1}</span>
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Cta />
+</Base>

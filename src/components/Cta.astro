@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+import Star from './Star.astro';
+import { company } from '../data/site';
+import { href } from '../lib';
+---
+<section class="wrap">
+  <div class="cta reveal">
+    <Star class="cta-star" />
+    <div style="display:grid;gap:20px">
+      <span class="eyebrow" style="color:inherit">Contact 7 op 7</span>
+      <h2>Klaar om te starten?</h2>
+      <p>Vertel ons wat u nodig hebt. U krijgt een vrijblijvende offerte op maat.</p>
+    </div>
+    <div style="display:grid;gap:22px">
+      <div class="contact-lines">
+        <a href={company.phoneHref}>{company.phone}</a>
+        <a href={`mailto:${company.email}`}>{company.email}</a>
+      </div>
+      <div class="btn-row">
+        <a class="btn" href={href('contact')}>Offerte aanvragen <Icon name="arrow" class="arr" /></a>
+        <a class="btn ghost" href={company.phoneHref}>Bel ons</a>
+      </div>
+    </div>
+  </div>
+</section>
