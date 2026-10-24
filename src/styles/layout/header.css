@@ -26,3 +26,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .menu-open .menu-toggle span::before { transform: translateY(6px) rotate(45deg); }
 .menu-open .menu-toggle span::after { transform: translateY(-6px) rotate(-45deg); }
 @media (min-width: 1000px) { .nav, .header-cta { display: flex; } .menu-toggle { display: none; } }
+
+/* Acties rechts: themaknop, offerteknop, menuknop */
+.header-actions { display: flex; align-items: center; gap: 10px; }

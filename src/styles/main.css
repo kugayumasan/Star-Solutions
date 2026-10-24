@@ -16,6 +16,7 @@
 @import './components/button.css';
 @import './layout/header.css';
 @import './layout/mobile-menu.css';
+@import './components/theme-toggle.css';
 
 @import './components/hero.css';
 @import './components/media.css';
