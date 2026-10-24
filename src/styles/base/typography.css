@@ -1,0 +1,11 @@
+/* Typografie: koppen, alinea's, focus, selectie en tekststijlen (eyebrow, lead) */
+h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; -webkit-hyphens: auto; font-family: var(--f-display); font-stretch: 112%; line-height: 1.04; letter-spacing: -0.02em; margin: 0; text-wrap: balance; font-weight: 800; }
+p { margin: 0; text-wrap: pretty; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+.eyebrow {
+  font-family: var(--f-mono); font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-soft); display: inline-flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ""; width: 10px; height: 10px; background: var(--accent); clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.lead { font-size: var(--step-1); color: var(--ink-soft); max-width: 58ch; line-height: 1.5; }

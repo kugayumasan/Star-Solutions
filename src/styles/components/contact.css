@@ -1,0 +1,11 @@
+/* Contactkaarten */
+.contact-grid { display: grid; gap: clamp(28px, 5vw, 64px); }
+@media (min-width: 960px) { .contact-grid { grid-template-columns: 1fr 1.2fr; } }
+.contact-cards { display: grid; gap: 12px; }
+.c-card { display: grid; grid-template-columns: 52px 1fr; gap: 16px; align-items: center; padding: 20px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--line); text-decoration: none; transition: border-color .3s, transform .4s var(--ease); }
+a.c-card:hover { border-color: var(--accent); transform: translateX(6px); }
+.c-card .ico { width: 52px; height: 52px; border-radius: 12px; background: var(--deep); color: var(--accent); display: grid; place-items: center; }
+.c-card .ico svg { width: 22px; height: 22px; }
+.c-card small { display: block; font-family: var(--f-mono); font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); }
+.c-card b { font-size: 1.08rem; word-break: break-word; }
+.c-card .vat { font-family: var(--f-mono); font-weight: 500; }

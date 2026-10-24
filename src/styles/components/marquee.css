@@ -1,0 +1,6 @@
+/* Marquee: lopende band met diensten */
+.marquee { background: var(--accent); color: var(--accent-ink); overflow: hidden; border-block: 1px solid color-mix(in oklab, var(--accent-ink) 15%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track span { font-family: var(--f-display); font-stretch: 118%; font-weight: 800; font-size: clamp(1.1rem, 2.2vw, 1.6rem); padding: 16px 0; display: inline-flex; align-items: center; gap: 28px; padding-right: 28px; white-space: nowrap; letter-spacing: -0.01em; }
+.marquee-track span::after { content: ""; width: 14px; height: 14px; background: currentColor; clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }

@@ -1,0 +1,41 @@
+/* Ingang van alle vormgeving. De volgorde hieronder is de cascade: niet zomaar wisselen.
+   settings  → tokens zonder kleur (lettertypes, maten, beweging)
+   themes    → alle kleuren, licht en donker
+   base      → reset en typografie van gewone HTML-elementen
+   layout    → paginabreedte, header, mobiel menu, footer
+   components→ één bestand per blok op de site
+   utilities → hulpclasses en animaties (als laatste, zodat ze winnen) */
+@import './settings/tokens.css';
+@import './themes/light.css';
+@import './themes/dark.css';
+
+@import './base/reset.css';
+@import './base/typography.css';
+
+@import './layout/container.css';
+@import './components/button.css';
+@import './layout/header.css';
+@import './layout/mobile-menu.css';
+
+@import './components/hero.css';
+@import './components/media.css';
+@import './components/marquee.css';
+@import './components/sectors.css';
+@import './components/service-grid.css';
+@import './components/deep-band.css';
+@import './components/partner.css';
+@import './components/steps.css';
+@import './components/values.css';
+@import './components/cta.css';
+@import './layout/footer.css';
+@import './components/page-hero.css';
+@import './components/service-detail.css';
+@import './components/gallery.css';
+@import './components/lightbox.css';
+@import './components/about.css';
+@import './components/contact.css';
+@import './components/form.css';
+@import './components/call-fab.css';
+
+@import './utilities/motion.css';
+@import './utilities/helpers.css';

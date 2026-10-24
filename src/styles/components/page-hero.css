@@ -1,0 +1,10 @@
+/* Pagina-hoofd van subpagina's, kruimelpad en terugknop */
+.page-hero { padding-block: clamp(32px, 6vw, 80px) clamp(40px, 6vw, 72px); }
+.crumbs { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .08em; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.back-link { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 18px; text-decoration: none; font-weight: 600; font-size: .95rem; color: var(--ink); }
+.back-link .back-ico { width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; transition: background .3s var(--ease), border-color .3s var(--ease), transform .3s var(--ease); }
+.back-link .back-ico svg { width: 18px; height: 18px; transform: rotate(180deg); }
+.back-link:hover .back-ico { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); transform: translateX(-3px); }
+.crumbs a { text-decoration: none; } .crumbs a:hover { color: var(--ink); }
+.page-hero h1 { font-size: min(var(--step-4), 12.5vw); font-stretch: 118%; letter-spacing: -0.035em; max-width: 16ch; animation: rise-soft 1s var(--ease) both; }
+.page-hero .lead { margin-top: 24px; animation: fade .9s .2s var(--ease) both; }

@@ -1,0 +1,17 @@
+---
+// Mobiel menu op volledig scherm; geopend en gesloten door src/scripts/site.js.
+import Icon from '../Icon.astro';
+import { company, nav } from '../../data/site';
+import { href } from '../../lib';
+---
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <nav aria-label="Mobiel menu">
+    {nav.map((n, i) => <a href={href(n.href)}>{n.label}<small>0{i + 1}</small></a>)}
+  </nav>
+  <div class="mm-contact">
+    <span>{company.availability}</span>
+    <a href={company.phoneHref}>{company.phone}</a>
+    <a href={`mailto:${company.email}`}>{company.email}</a>
+  </div>
+  <a class="btn accent" href={href('contact')}>Vraag een offerte <Icon name="arrow" /></a>
+</div>

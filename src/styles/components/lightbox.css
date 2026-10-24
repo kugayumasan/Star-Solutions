@@ -1,0 +1,13 @@
+/* Lightbox (foto op volledig scherm) */
+.lightbox { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: var(--lightbox-bg); color: var(--on-photo); overscroll-behavior: contain; }
+.lightbox[open] { display: grid; place-items: center; animation: lb-in .3s var(--ease); }
+.lightbox::backdrop { background: transparent; }
+.lightbox img { max-width: calc(100vw - 32px); max-height: calc(100dvh - 120px); object-fit: contain; border-radius: 8px; }
+.lb-count { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); font-family: var(--f-mono); font-size: .8rem; letter-spacing: .1em; opacity: .8; }
+.lb-btn { position: absolute; width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--lightbox-btn-border); background: var(--lightbox-btn-bg); color: var(--on-photo); font-size: 30px; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .25s; }
+.lb-btn:hover { background: var(--accent); color: var(--accent-ink); }
+.lb-close { top: 12px; right: 12px; }
+.lb-prev { left: 12px; top: 50%; transform: translateY(-50%); }
+.lb-next { right: 12px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 640px) { .lb-prev, .lb-next { top: auto; bottom: 18px; transform: none; } .lb-prev { left: calc(50% - 64px); } .lb-next { right: calc(50% - 64px); } }
+@keyframes lb-in { from { opacity: 0; } }

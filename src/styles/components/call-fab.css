@@ -1,0 +1,5 @@
+/* Zwevende belknop op mobiel */
+.call-fab { position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 40; width: 58px; height: 58px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; box-shadow: 0 14px 30px -10px var(--shadow-fab); transform: translateY(120px); transition: transform .5s var(--ease); }
+.call-fab.show { transform: none; }
+.call-fab svg { width: 24px; height: 24px; }
+@media (min-width: 1000px) { .call-fab { display: none; } }

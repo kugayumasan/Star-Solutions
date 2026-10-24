@@ -18,21 +18,21 @@ import { pageMedia } from '../data/media';
     </div>
   </section>
 
-  <section class="wrap" style="padding-bottom:clamp(64px,9vw,128px)">
+  <section class="wrap pb-section">
     <div class="about-grid">
       <Media class="detail-hero-media contain reveal-img" img={pageMedia['over-ons']} alt="Strategiekaart van Star Solutions" icon="star" />
-      <div style="display:grid;gap:22px;align-content:center">
+      <div class="stack-22 content-center">
         <span class="eyebrow">Onze missie</span>
         <p class="mission reveal">Een <mark>aangename, veilige en efficiënte</mark> werkomgeving creëren, op een milieuvriendelijke manier.</p>
       </div>
     </div>
   </section>
 
-  <section class="wrap" style="padding-bottom:clamp(64px,9vw,128px)">
+  <section class="wrap pb-section">
     <div class="about-grid">
-      <div style="display:grid;gap:18px;align-content:start">
+      <div class="stack-18 content-start">
         <span class="eyebrow">Wat we doen</span>
-        <h2 class="reveal" style="font-size:var(--step-3)">Eén partner, van schoonmaak tot sloop</h2>
+        <h2 class="reveal text-step-3">Eén partner, van schoonmaak tot sloop</h2>
       </div>
       <div class="prose reveal">
         <p>Industriële en algemene schoonmaak, groenonderhoud, desinfectie, bouw en renovatie (inclusief afbraak) en klusjesdiensten.</p>
@@ -45,9 +45,9 @@ import { pageMedia } from '../data/media';
   <section class="section deep">
     <Star class="big-star" />
     <div class="wrap about-grid">
-      <div style="display:grid;gap:18px;align-content:start">
+      <div class="stack-18 content-start">
         <span class="eyebrow">Bedrijfsdoelstellingen</span>
-        <h2 class="reveal" style="font-size:var(--step-3)">Waar we elke dag naartoe werken</h2>
+        <h2 class="reveal text-step-3">Waar we elke dag naartoe werken</h2>
       </div>
       <ol class="goal-list reveal">{goals.map((g) => <li>{g}</li>)}</ol>
     </div>
