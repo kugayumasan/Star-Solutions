@@ -6,6 +6,8 @@ import MobileMenu from '../components/layout/MobileMenu.astro';
 import Footer from '../components/layout/Footer.astro';
 import CallFab from '../components/layout/CallFab.astro';
 import siteScript from '../scripts/site.js?raw';
+import themeInitScript from '../scripts/theme-init.js?raw';
+import themeScript from '../scripts/theme.js?raw';
 import { company } from '../data/site';
 import { asset } from '../lib';
 
@@ -29,7 +31,7 @@ const fullTitle = current === '' ? `${company.name} | ${company.tagline}` : `${t
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
-    <script is:inline>document.documentElement.classList.add('js');</script>
+    <script is:inline set:html={themeInitScript} />
   </head>
   <body>
     <Header current={current} />
@@ -42,6 +44,7 @@ const fullTitle = current === '' ? `${company.name} | ${company.tagline}` : `${t
     <Footer />
     <CallFab />
 
+    <script is:inline set:html={themeScript} />
     <script is:inline set:html={siteScript} />
   </body>
 </html>

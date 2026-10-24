@@ -44,6 +44,7 @@ Alle teksten, foto's en video's komen van de vorige site, [starsolutions-service
 **Overal**
 
 - Volledig responsive voor gsm, tablet en desktop, zonder horizontaal scrollen
+- Een knop met zon en maan in de header om te wisselen tussen licht en donker; de keuze wordt onthouden
 - Een header die verdwijnt bij naar beneden scrollen, een mobiel menu op volledig scherm en een belknop die zichtbaar blijft op gsm
 - Elke pagina opent bovenaan, ook via knoppen en footerlinks
 - Rustige animaties bij het scrollen, die uitgeschakeld worden als de bezoeker "minder beweging" heeft ingesteld
@@ -62,10 +63,10 @@ Alle teksten, foto's en video's komen van de vorige site, [starsolutions-service
     ├── data/media.ts            Welke foto's en video's bij welke dienst horen (gegenereerd)
     ├── layouts/Base.astro       Paginaskelet: meta-tags, lettertypes en de layout-blokken hieronder
     ├── components/
-    │   ├── layout/              Header, mobiel menu, footer, logo en de zwevende belknop
+    │   ├── layout/              Header, themaknop, mobiel menu, footer, logo en de zwevende belknop
     │   └── *.astro              Herbruikbare blokken (foto, terugknop, CTA, iconen, diensten-grid, ...)
     ├── pages/                   Eén bestand per pagina; [slug].astro maakt alle dienstpagina's
-    ├── scripts/                 JavaScript: site.js (hele site), gallery.js (lightbox), contact-form.js
+    ├── scripts/                 JavaScript: site.js (hele site), theme-init.js + theme.js (thema), gallery.js, contact-form.js
     ├── styles/
     │   ├── main.css             Laadt alle CSS-bestanden in de juiste volgorde
     │   ├── settings/tokens.css  Lettertypes, tekstgroottes, maten, afronding, animatiecurve
@@ -82,7 +83,7 @@ Alle teksten, foto's en video's komen van de vorige site, [starsolutions-service
 
 - **Telefoon, e-mail, adres en btw-nummer** staan in `company`, bovenaan `src/data/site.ts`, en worden overal automatisch gebruikt.
 - **Een dienst** pas je aan in `services` in hetzelfde bestand. Voeg je er één toe, dan verschijnt die automatisch als pagina, in het menu, op de dienstenpagina en in de footer.
-- **Kleuren** staan allemaal in `src/styles/themes/`. `light.css` is het standaardthema, `dark.css` het donkere (gebruikt als de bezoeker donkere modus aan heeft). Pas je daar een waarde aan, zoals `--accent` (het geel), dan verandert ze overal op de site. Met `data-theme="light"` of `data-theme="dark"` op `<html>` zet je een thema vast.
+- **Kleuren** staan allemaal in `src/styles/themes/`. `light.css` is het standaardthema, `dark.css` het donkere (gebruikt als de bezoeker donkere modus aan heeft). Pas je daar een waarde aan, zoals `--accent` (het geel), dan verandert ze overal op de site. Bezoekers kunnen zelf wisselen met de zon/maan-knop in de header; die keuze wordt onthouden. Zonder keuze volgt de site de instelling van hun toestel.
 - **Lettertypes, tekstgroottes en maten** staan in `src/styles/settings/tokens.css`.
 - **De vormgeving van één blok** vind je in het gelijknamige bestand in `src/styles/components/` of `src/styles/layout/`.
 - **Foto's per dienst** worden ingesteld in het `plan` bovenaan `scripts/process-media.py`. Voer daarna het script opnieuw uit.

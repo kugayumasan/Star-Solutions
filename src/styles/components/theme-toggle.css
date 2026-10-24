@@ -1,0 +1,17 @@
+/* Themaknop (zon/maan) in de header */
+.theme-toggle { width: 48px; height: 48px; flex: none; border-radius: 50%; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); display: grid; place-items: center; cursor: pointer; padding: 0; transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease); }
+.theme-toggle:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.theme-toggle svg { grid-area: 1 / 1; width: 20px; height: 20px; transition: transform .5s var(--ease), opacity .3s var(--ease); }
+@media (min-width: 1000px) { .theme-toggle { width: 44px; height: 44px; } }
+
+/* Licht thema: maan tonen. Donker thema: zon tonen. */
+.theme-toggle .sun { opacity: 0; transform: rotate(-90deg) scale(.5); }
+:root[data-theme="dark"] .theme-toggle .sun { opacity: 1; transform: none; }
+:root[data-theme="dark"] .theme-toggle .moon { opacity: 0; transform: rotate(90deg) scale(.5); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .sun { opacity: 1; transform: none; }
+  :root:not([data-theme="light"]) .theme-toggle .moon { opacity: 0; transform: rotate(90deg) scale(.5); }
+}
+
+/* Over het open mobiele menu */
+.menu-open .theme-toggle { background: transparent; border-color: var(--deep-line); color: var(--deep-fg); }

@@ -1,0 +1,9 @@
+---
+// Knop om te wisselen tussen licht en donker thema (src/scripts/theme.js).
+// De zon is zichtbaar in donker thema (klik = licht), de maan in licht thema (klik = donker).
+import Icon from '../Icon.astro';
+---
+<button class="theme-toggle" type="button" id="theme-toggle" aria-label="Donker thema aanzetten">
+  <Icon name="moon" class="moon" />
+  <Icon name="sun" class="sun" />
+</button>
