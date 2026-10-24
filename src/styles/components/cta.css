@@ -1,0 +1,14 @@
+/* CTA-blok */
+.cta { border-radius: calc(var(--radius) * 2); background: var(--accent); color: var(--accent-ink); padding: clamp(32px, 6vw, 80px); display: grid; gap: 28px; position: relative; overflow: hidden; isolation: isolate; }
+@media (min-width: 900px) { .cta { grid-template-columns: 1.4fr 1fr; align-items: end; } }
+.cta h2 { font-size: var(--step-4); font-stretch: 118%; letter-spacing: -0.035em; }
+.cta p { font-size: var(--step-1); max-width: 40ch; }
+.cta .btn { --b: var(--accent-ink); --f: var(--accent); }
+.cta .btn::before { background: var(--surface); }
+.cta .btn:hover { color: var(--ink); border-color: var(--surface); }
+.cta .btn.ghost { --b: transparent; --f: var(--accent-ink); border-color: var(--accent-ink); }
+.cta-star { position: absolute; right: -60px; top: -60px; width: 300px; height: 300px; fill: color-mix(in oklab, var(--accent-ink) 9%, transparent); z-index: -1; animation: spin 40s linear infinite; }
+.cta .contact-lines { display: grid; gap: 4px; font-weight: 600; }
+.cta .contact-lines a { text-decoration: none; font-size: var(--step-1); }
+.cta .contact-lines a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.cta .eyebrow { color: inherit; }

@@ -1,0 +1,66 @@
+/* Donker thema.
+   Wordt gebruikt als de bezoeker donkere modus heeft ingesteld, of met <html data-theme="dark">.
+   Met <html data-theme="light"> blijft de site altijd licht.
+   Pas alleen de waarden in het eerste blok aan; de blokken eronder koppelen ze. */
+:root {
+  --dark-bg: #0a121c;
+  --dark-surface: #111c29;
+  --dark-ink: #eef2f7;
+  --dark-ink-soft: #9aa8bb;
+  --dark-line: #223144;
+
+  --dark-accent: #ffc22e;
+  --dark-accent-ink: #0c1724;
+  --dark-logo-star: #ffb800;
+
+  --dark-deep: #060c14;
+  --dark-deep-fg: #eef2f7;
+  --dark-deep-soft: #8f9db1;
+  --dark-deep-line: #1d2a3b;
+
+  --dark-on-photo: #ffffff;
+  --dark-photo-overlay-strong: rgb(6 12 20 / .9);
+  --dark-photo-overlay-soft: rgb(6 12 20 / .15);
+  --dark-media-from: #1b2a3d;
+  --dark-media-to: #0c1724;
+  --dark-media-icon-tint: #ffffff;
+  --dark-image-bg: #ffffff;
+  --dark-lightbox-bg: rgb(6 12 20 / .94);
+  --dark-lightbox-btn-bg: rgb(255 255 255 / .08);
+  --dark-lightbox-btn-border: rgb(255 255 255 / .25);
+
+  --dark-success: #22c55e;
+  --dark-success-glow: rgb(34 197 94 / .6);
+  --dark-success-glow-end: rgb(34 197 94 / 0);
+  --dark-danger: #ef4444;
+
+  --dark-shadow-badge: rgb(0 0 0 / .35);
+  --dark-shadow-card: rgb(12 23 36 / .35);
+  --dark-shadow-fab: rgb(0 0 0 / .45);
+}
+
+/* Koppeling, twee keer nodig: automatisch (systeeminstelling) en geforceerd (data-theme). */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: var(--dark-bg); --surface: var(--dark-surface); --ink: var(--dark-ink); --ink-soft: var(--dark-ink-soft); --line: var(--dark-line);
+    --accent: var(--dark-accent); --accent-ink: var(--dark-accent-ink); --logo-star: var(--dark-logo-star);
+    --deep: var(--dark-deep); --deep-fg: var(--dark-deep-fg); --deep-soft: var(--dark-deep-soft); --deep-line: var(--dark-deep-line);
+    --on-photo: var(--dark-on-photo); --photo-overlay-strong: var(--dark-photo-overlay-strong); --photo-overlay-soft: var(--dark-photo-overlay-soft);
+    --media-from: var(--dark-media-from); --media-to: var(--dark-media-to); --media-icon-tint: var(--dark-media-icon-tint); --image-bg: var(--dark-image-bg);
+    --lightbox-bg: var(--dark-lightbox-bg); --lightbox-btn-bg: var(--dark-lightbox-btn-bg); --lightbox-btn-border: var(--dark-lightbox-btn-border);
+    --success: var(--dark-success); --success-glow: var(--dark-success-glow); --success-glow-end: var(--dark-success-glow-end); --danger: var(--dark-danger);
+    --shadow-badge: var(--dark-shadow-badge); --shadow-card: var(--dark-shadow-card); --shadow-fab: var(--dark-shadow-fab);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: var(--dark-bg); --surface: var(--dark-surface); --ink: var(--dark-ink); --ink-soft: var(--dark-ink-soft); --line: var(--dark-line);
+  --accent: var(--dark-accent); --accent-ink: var(--dark-accent-ink); --logo-star: var(--dark-logo-star);
+  --deep: var(--dark-deep); --deep-fg: var(--dark-deep-fg); --deep-soft: var(--dark-deep-soft); --deep-line: var(--dark-deep-line);
+  --on-photo: var(--dark-on-photo); --photo-overlay-strong: var(--dark-photo-overlay-strong); --photo-overlay-soft: var(--dark-photo-overlay-soft);
+  --media-from: var(--dark-media-from); --media-to: var(--dark-media-to); --media-icon-tint: var(--dark-media-icon-tint); --image-bg: var(--dark-image-bg);
+  --lightbox-bg: var(--dark-lightbox-bg); --lightbox-btn-bg: var(--dark-lightbox-btn-bg); --lightbox-btn-border: var(--dark-lightbox-btn-border);
+  --success: var(--dark-success); --success-glow: var(--dark-success-glow); --success-glow-end: var(--dark-success-glow-end); --danger: var(--dark-danger);
+  --shadow-badge: var(--dark-shadow-badge); --shadow-card: var(--dark-shadow-card); --shadow-fab: var(--dark-shadow-fab);
+  color-scheme: dark;
+}

@@ -1,0 +1,8 @@
+---
+// Logo met naam, gebruikt in de header en de footer.
+import Star from '../Star.astro';
+import { href } from '../../lib';
+interface Props { label?: string; }
+const { label } = Astro.props;
+---
+<a class="brand" href={href('')} aria-label={label}><span class="mark"><Star /></span><span>STAR Solutions<small>Service · Gent</small></span></a>

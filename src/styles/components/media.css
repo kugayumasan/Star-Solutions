@@ -1,0 +1,10 @@
+/* Foto-blok met terugval (en de look van de vlakken) */
+.media { background:
+  radial-gradient(120% 90% at 80% 10%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 55%),
+  linear-gradient(160deg, var(--media-from), var(--media-to) 70%); position: relative; }
+.media::before { content: ""; position: absolute; inset: 0; opacity: .14; background-image: linear-gradient(var(--deep-fg) 1px, transparent 1px), linear-gradient(90deg, var(--deep-fg) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to bottom, black, transparent 85%); }
+.media img { position: relative; }
+.media img.broken { display: none; }
+.media .fallback-icon { position: absolute; inset: 0; display: grid; place-items: center; color: color-mix(in oklab, var(--accent) 85%, var(--media-icon-tint)); }
+.media .fallback-icon svg { width: 34%; max-width: 120px; height: auto; opacity: .85; }
+.media:has(img:not(.broken)) .fallback-icon { display: none; }

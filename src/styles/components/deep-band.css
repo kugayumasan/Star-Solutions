@@ -1,0 +1,4 @@
+/* Donkere band */
+.deep { background: var(--deep); color: var(--deep-fg); position: relative; overflow: hidden; }
+.deep .eyebrow, .deep .lead { color: var(--deep-soft); }
+.deep .btn.ghost { color: var(--deep-fg); }

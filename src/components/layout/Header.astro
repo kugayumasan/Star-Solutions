@@ -1,0 +1,21 @@
+---
+// Sticky header met logo, hoofdmenu, offerteknop en de knop voor het mobiele menu.
+import Brand from './Brand.astro';
+import Icon from '../Icon.astro';
+import { nav } from '../../data/site';
+import { href } from '../../lib';
+interface Props { current: string; }
+const { current } = Astro.props;
+---
+<header class="site-header" id="top">
+  <div class="wrap bar">
+    <Brand label="Star Solutions, naar home" />
+    <nav class="nav" aria-label="Hoofdmenu">
+      {nav.map((n) => <a href={href(n.href)} aria-current={n.href === current ? 'page' : undefined}>{n.label}</a>)}
+    </nav>
+    <div class="header-cta">
+      <a class="btn accent" href={href('contact')}>Vraag een offerte <Icon name="arrow" class="arr" /></a>
+    </div>
+    <button class="menu-toggle" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="mobile-menu" id="menu-toggle"><span></span></button>
+  </div>
+</header>

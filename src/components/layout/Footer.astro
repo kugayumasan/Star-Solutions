@@ -1,0 +1,43 @@
+---
+// Footer met diensten, extra links en contactgegevens.
+import Brand from './Brand.astro';
+import { company, services } from '../../data/site';
+import { href } from '../../lib';
+const mainServices = services.filter((s) => !s.parent);
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <Brand />
+        <p>{company.subline}</p>
+      </div>
+      <div>
+        <h4>Diensten</h4>
+        <ul>{mainServices.map((s) => <li><a href={href(s.slug)}>{s.title}</a></li>)}</ul>
+      </div>
+      <div>
+        <h4>Ook</h4>
+        <ul>
+          {services.filter((s) => s.parent).map((s) => <li><a href={href(s.slug)}>{s.title}</a></li>)}
+          <li><a href={href('aanpak')}>Aanpak</a></li>
+          <li><a href={href('over-ons')}>Over ons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact · 7 op 7</h4>
+        <ul>
+          <li>{company.street}<br />{company.city}</li>
+          <li><a href={company.phoneHref}>{company.phone}</a></li>
+          <li><a href={`mailto:${company.email}`}>{company.email}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-big" aria-hidden="true">STAR SOLUTIONS</div>
+    <div class="footer-bottom">
+      <span>© {new Date().getFullYear()} Star Solutions</span>
+      <span class="mono">BTW {company.vat}</span>
+      <button class="to-top" type="button" id="to-top">Naar boven ↑</button>
+    </div>
+  </div>
+</footer>

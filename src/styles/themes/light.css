@@ -1,0 +1,46 @@
+/* Licht thema (standaard).
+   Concept: "de propere werkplaats": koele, strakke vlakken, brede industriële koppen,
+   één signaalkleur (veiligheidsgeel van werkkledij en de ster uit het logo).
+   Pas hier een kleur aan en ze verandert overal op de site. */
+:root {
+  /* Basis */
+  --bg: #f3f5f7;            /* achtergrond van de pagina */
+  --surface: #ffffff;       /* kaarten, formulieren */
+  --ink: #0c1724;           /* tekst */
+  --ink-soft: #46546a;      /* zachte tekst, labels */
+  --line: #d9dee6;          /* randen en scheidingslijnen */
+
+  /* Signaalkleur */
+  --accent: #ffb800;        /* het geel */
+  --accent-ink: #0c1724;    /* tekst op geel */
+  --logo-star: #ffb800;     /* ster in het draaiende hero-embleem */
+
+  /* Donkere banden (menu, footer, zijkaart) */
+  --deep: #0c1724;
+  --deep-fg: #eef2f7;
+  --deep-soft: #93a1b5;
+  --deep-line: #233246;
+
+  /* Foto's en media */
+  --on-photo: #ffffff;                          /* tekst op foto's en in de lightbox */
+  --photo-overlay-strong: rgb(6 12 20 / .9);    /* verloop onder sectortekst */
+  --photo-overlay-soft: rgb(6 12 20 / .15);
+  --media-from: #1b2a3d;                        /* terugval-vlak als een foto niet laadt */
+  --media-to: #0c1724;
+  --media-icon-tint: #ffffff;
+  --image-bg: #ffffff;                          /* achter foto's die volledig getoond worden */
+  --lightbox-bg: rgb(6 12 20 / .94);
+  --lightbox-btn-bg: rgb(255 255 255 / .08);
+  --lightbox-btn-border: rgb(255 255 255 / .25);
+
+  /* Status */
+  --success: #22c55e;                           /* "nu bereikbaar"-bolletje, formulier verstuurd */
+  --success-glow: rgb(34 197 94 / .6);
+  --success-glow-end: rgb(34 197 94 / 0);
+  --danger: #ef4444;                            /* formulierfout */
+
+  /* Schaduwen */
+  --shadow-badge: rgb(0 0 0 / .35);
+  --shadow-card: rgb(12 23 36 / .35);
+  --shadow-fab: rgb(0 0 0 / .45);
+}

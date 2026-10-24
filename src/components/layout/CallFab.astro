@@ -1,0 +1,6 @@
+---
+// Zwevende belknop op gsm; verschijnt na wat scrollen (src/scripts/site.js).
+import Icon from '../Icon.astro';
+import { company } from '../../data/site';
+---
+<a class="call-fab" href={company.phoneHref} aria-label={`Bel ons: ${company.phone}`} id="call-fab"><Icon name="phone" /></a>

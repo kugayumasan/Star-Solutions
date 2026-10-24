@@ -1,0 +1,18 @@
+/* Knoppen */
+.btn {
+  --b: var(--ink); --f: var(--bg);
+  display: inline-flex; align-items: center; gap: 12px; min-height: 52px; padding: 0 22px 0 24px;
+  border-radius: 999px; background: var(--b); color: var(--f); text-decoration: none; font-weight: 700;
+  border: 1.5px solid var(--b); position: relative; overflow: hidden; isolation: isolate;
+  transition: color .35s var(--ease), border-color .35s var(--ease);
+}
+.btn::before { content: ""; position: absolute; inset: 0; background: var(--accent); transform: translateY(101%); transition: transform .45s var(--ease); z-index: -1; border-radius: inherit; }
+.btn:hover::before { transform: translateY(0); }
+.btn:hover { color: var(--accent-ink); border-color: var(--accent); }
+.btn .arr { width: 18px; height: 18px; transition: transform .35s var(--ease); }
+.btn:hover .arr { transform: translateX(4px); }
+.btn.accent { --b: var(--accent); --f: var(--accent-ink); }
+.btn.accent::before { background: var(--surface); }
+.btn.accent:hover { color: var(--ink); border-color: var(--surface); }
+.btn.ghost { --b: transparent; --f: currentColor; border-color: currentColor; }
+.btn-row { display: flex; flex-wrap: wrap; gap: 12px; }

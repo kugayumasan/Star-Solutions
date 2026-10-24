@@ -1,0 +1,27 @@
+/* Design-tokens zonder kleur: lettertypes, typeschaal, maten en beweging.
+   Kleuren staan in themes/light.css en themes/dark.css. */
+:root {
+  /* Lettertypes */
+  --f-display: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
+  --f-body: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --f-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Vloeiende typeschaal */
+  --step--1: clamp(0.82rem, 0.8rem + 0.1vw, 0.88rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
+  --step-3: clamp(2rem, 1.6rem + 2vw, 3.2rem);
+  --step-4: clamp(2.6rem, 1.8rem + 4.2vw, 5.6rem);
+
+  /* Vormen en layout */
+  --radius: 14px;
+  --gutter: max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  --max: 1240px;
+  --header-h: 72px;
+  --section-space: clamp(64px, 9vw, 128px);   /* verticale ruimte rond een sectie */
+
+  /* Beweging */
+  --ease: cubic-bezier(.2, .7, .1, 1);
+}

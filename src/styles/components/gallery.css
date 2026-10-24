@@ -1,0 +1,11 @@
+/* Fotogalerij */
+.gallery { display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 800px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+.gallery .media { aspect-ratio: 4 / 5; max-width: 100%; border-radius: var(--radius); overflow: hidden; }
+.gallery .media img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease); }
+.gallery .media:hover img { transform: scale(1.06); }
+.gallery-item { all: unset; display: block; cursor: zoom-in; border-radius: var(--radius); }
+.gallery-item:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.gallery-item.sr-hidden, .gallery-item.extra { display: none; }
+.gallery-more { margin-top: 18px; color: var(--ink); }
+.media.contain img { object-fit: contain; background: var(--image-bg); }

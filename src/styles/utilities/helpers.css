@@ -1,0 +1,11 @@
+/* Kleine hulpclasses voor layout in de pagina's (vervangen inline styles). */
+.stack-18 { display: grid; gap: 18px; }
+.stack-20 { display: grid; gap: 20px; }
+.stack-22 { display: grid; gap: 22px; }
+.content-center { align-content: center; }
+.content-start { align-content: start; }
+.items-start { justify-items: start; }
+.pt-0 { padding-top: 0; }
+.pb-section { padding-bottom: var(--section-space); }
+.mb-18 { margin-bottom: 18px; }
+.text-step-3 { font-size: var(--step-3); }

@@ -1,0 +1,23 @@
+/* Sectoren: uitklappende panelen */
+.sectors { display: grid; gap: 14px; }
+@media (min-width: 900px) { .sectors { display: flex; height: 560px; } }
+.sector {
+  position: relative; border-radius: calc(var(--radius) * 1.4); overflow: hidden; color: var(--on-photo); text-decoration: none; min-height: 340px;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; isolation: isolate;
+  flex: 1; transition: flex .8s var(--ease);
+}
+@media (min-width: 900px) { .sector:hover, .sector:focus-visible { flex: 2.1; } }
+.sector .media { position: absolute; inset: 0; z-index: -2; }
+.sector .media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+.sector:hover .media img { transform: scale(1.06); }
+.sector::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, var(--photo-overlay-strong), var(--photo-overlay-soft) 60%, transparent); }
+.sector .num { position: absolute; top: 22px; left: 26px; font-family: var(--f-mono); font-size: .8rem; letter-spacing: .14em; opacity: .85; }
+.sector h3 { font-size: clamp(1.35rem, 1rem + 1vw, 2rem); overflow-wrap: anywhere; hyphens: auto; }
+.sector p { max-width: 36ch; opacity: .88; margin-top: 10px; }
+@media (min-width: 900px) {
+  .sector p { max-height: 0; opacity: 0; overflow: hidden; transition: max-height .6s var(--ease), opacity .5s .1s; }
+  .sector:hover p, .sector:focus-visible p { max-height: 8em; opacity: .9; }
+}
+.sector .go { position: absolute; top: 18px; right: 18px; width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; transform: rotate(-45deg); transition: transform .5s var(--ease); }
+.sector:hover .go { transform: rotate(0); }
+.sector .go svg { width: 20px; height: 20px; }

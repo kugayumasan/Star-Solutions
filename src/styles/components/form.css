@@ -1,0 +1,14 @@
+/* Formulier */
+.form { background: var(--surface); border: 1px solid var(--line); border-radius: calc(var(--radius) * 1.4); padding: clamp(22px, 4vw, 40px); display: grid; gap: 16px; }
+.form h2 { font-size: var(--step-2); }
+.form .row { display: grid; gap: 16px; }
+@media (min-width: 640px) { .form .row { grid-template-columns: 1fr 1fr; } }
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 600; font-size: .92rem; }
+.field input, .field select, .field textarea { font: inherit; color: var(--ink); background: var(--bg); border: 1.5px solid var(--line); border-radius: 10px; padding: 13px 14px; width: 100%; transition: border-color .2s, box-shadow .2s; }
+.field textarea { min-height: 150px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 4px color-mix(in oklab, var(--accent) 45%, transparent); }
+.form .note { font-size: .88rem; color: var(--ink-soft); }
+.form-status { padding: 14px 16px; border-radius: 10px; background: color-mix(in oklab, var(--success) 16%, var(--surface)); font-weight: 600; }
+.form button.btn { cursor: pointer; font: inherit; font-weight: 700; }
+.form-status.is-error { background: color-mix(in oklab, var(--danger) 16%, var(--surface)); }
